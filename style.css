@@ -1,0 +1,708 @@
+/* Base styles */
+:root {
+    --custom-text: #4a5568;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f9fafb;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--custom-text);
+    overflow-x: hidden; /* Keep this if you don't want horizontal scroll for the body */
+    width: 100%;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Header */
+  .header {
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    position: relative; /* Added for z-index context if needed, and for .nav positioning */
+    z-index: 1001; /* Ensure header is above some content but below active mobile menu's X */
+  }
+  
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Positions logo left, hamburger right */
+    height: 5rem;
+    position: relative; /* For absolute positioning of the nav dropdown */
+  }
+  
+  .logo {
+    height: 2.5rem;
+    width: auto;
+  }
+  
+  /* Hamburger Icon */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px; /* Space between lines */
+    cursor: pointer;
+    padding: 0.5rem; /* Clickable area */
+    z-index: 1005; /* Ensure hamburger/X is above everything including open menu */
+  }
+  
+  .hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333; /* Dark lines for hamburger */
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Hamburger to X transformation when active */
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); /* 8px = 5px gap + 3px height */
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  /* On PC, if header is light, X can be dark. On mobile (dark menu), X should be light */
+  /* This will be handled in the mobile media query for .hamburger.active span */
+
+  /* Navigation Menu Panel */
+  .nav {
+    display: none; /* Hidden by default */
+    position: absolute; /* Drops down below the header */
+    top: 100%; /* Start below the header */
+    left: 0;
+    width: 100%; /* Full width of its container (.header-container) */
+    background-color: #222222; /* Dark background like reference */
+    padding: 1.5rem 1.5rem; /* Padding inside the menu */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Below hamburger, above other header content if any */
+    border-radius: 0 0 6px 6px; /* Optional: if you want slight rounding at the bottom on desktop */
+  }
+  
+  .nav.active {
+    display: block; /* Show when active */
+  }
+  
+  .nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Space between menu items */
+    align-items: flex-start; /* Align text to the left */
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: #f0f0f0; /* Light text color */
+    font-weight: 500; 
+    font-size: 1rem;
+    text-transform: uppercase; /* Uppercase text as per reference */
+    letter-spacing: 0.075em;
+    padding: 0.75rem 0; /* Vertical padding for links */
+    display: block; /* Make the full width of the link clickable */
+    transition: color 0.3s ease;
+  }
+  
+  .nav a:hover,
+  .nav a:focus {
+    color: #ffffff; /* Brighter white on hover/focus */
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .hero-background {
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/sukagawa__overview.png');
+    background-size: cover;
+    background-position: center 40%;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .hero-title {
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-align: center;
+    margin: 0;
+    padding: 0 1rem;
+    width: 100%;
+  }
+  
+  .hero-subtitle {
+    text-align: center;
+  }
+  
+  .hero-subtitle p {
+    color: white;
+    font-size: 1.75rem;
+    margin: 1rem 0;
+  }
+  
+  /* Main Content */
+  .main-content {
+    padding: 4rem 1rem;
+    width: 100%;
+    /* overflow-x: hidden; -- already on body */
+  }
+  
+  .description {
+    max-width: 42rem;
+    margin: 0 auto 4rem;
+    text-align: left;
+  }
+  
+  .description p {
+    color: #4b5563;
+    line-height: 1.7;
+  }
+  
+  /* Courses Section */
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--custom-text);
+  }
+  
+  .courses-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  /* Card styles */
+  .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+  
+  .card {
+    background-color: white;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    width: 100%;
+    border-radius: 8px; /* Added for consistency */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Softer shadow */
+  }
+  
+  .card-link:hover .card {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .card-image {
+    position: relative;
+    overflow: hidden; /* Ensure scaled image doesn't break card bounds */
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 16rem;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+  
+  .card-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 0.25rem;
+  }
+
+  .copyright-badge {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    border-radius: 0.25rem;
+  }
+  
+  .card-content {
+    padding: 1.5rem;
+  }
+  
+  .card-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--custom-text);
+  }
+  
+  .card-subtitle {
+    color: #4b5563;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  
+  .card-description {
+    font-size: 0.875rem;
+    color: #4b5563;
+    white-space: pre-line;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #f3f4f6;
+    padding: 2rem 0;
+  }
+  
+  .footer-content {
+    text-align: center;
+    color: var(--custom-text);
+  }
+
+/* モデルコースとお申込みセクションのスタイル */
+.model-courses-section,
+.booking-section { /* .booking-section is not in HTML, but kept rule */
+  margin: 5rem 0;
+  padding: 2rem 0;
+  background-color: #f9fafb; /* Matches body bg, good for separation */
+  border-radius: 8px;
+}
+
+.course-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.course-main-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #edf2f7;
+}
+
+.course-note {
+  font-size: 0.875rem;
+  color: #4a5568;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.day-container {
+  margin-bottom: 2rem;
+}
+
+.day-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #fff;
+  background-color: #D32F2F;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+/* タイムライン */
+.timeline {
+  position: relative;
+  margin-left: 2rem;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background-color: #e2e8f0;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.25rem; /* Adjusted for alignment */
+  top: 0.5rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: #D32F2F;
+}
+
+.timeline-time {
+  font-weight: bold;
+  color: #2d3748;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-content {
+  color: #4a5568;
+}
+
+.timeline-content strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-content p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* 追加オプション */
+.extra-options {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #f0c1c0; /* Existing style */
+  border-radius: 8px;
+  color: #4a5568;
+}
+
+/* お申込みおよびお支払いの流れ */
+.flow-chart {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto;
+}
+    
+.flow-item {
+  display: flex;
+  margin-bottom: 1.5rem;
+  position: relative;
+  align-items: center; /* Vertically align icon and text */
+}
+    
+.flow-icon {
+  width: 100px; /* Slightly smaller for balance */
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.5rem; /* Adjusted margin */
+  flex-shrink: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+    
+.flow-blue {
+  background-color: #f0c1c0; /* Existing style */
+}
+    
+.flow-yellow {
+  background-color: #f06560; /* Existing style */
+}
+    
+.icon-img {
+  width: 50%; /* Adjusted size */
+  height: 50%;
+  object-fit: contain;
+}
+    
+.flow-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+    
+.flow-title {
+  font-size: 1.25rem; /* Adjusted size */
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+    
+.flow-description {
+  font-size: 0.9rem; /* Adjusted size */
+  color: #4b5563;
+}
+    
+.cta-button {
+  background-color: #D32F2F;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin: 3rem auto 1rem;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  max-width: 300px;
+}
+    
+.cta-button:hover {
+  background-color: #D84646;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+    
+.organizer-info {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+    
+.info-box {
+  flex: 1;
+  min-width: 300px; /* Ensures boxes don't get too small */
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+    
+.info-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+    
+.info-box p {
+  margin: 0.5rem 0;
+  font-size: 0.875rem;
+}
+    
+.notice {
+  text-align: center;
+  margin: 2rem auto;
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+#inquiry-step {
+  scroll-margin-top: 100px; /* Adjust based on fixed header height, if any */
+}
+    
+/* Responsive flow chart items */
+@media (max-width: 768px) {
+  .flow-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .flow-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Fixed Buttons (Right side on PC, Bottom on Mobile) */
+.fixed-buttons {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  z-index: 999; /* Below header/nav but above general content */
+  background-color: rgba(255, 255, 255, 0.0);
+}
+
+.fixed-button {
+  background-color: rgba(211, 47, 47, 0.9);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px 0 0 8px;
+  padding: 0.75rem 0.5rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-align: center;
+  font-size: 0.95rem;
+  min-height: 8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.fixed-button:hover {
+  background-color: rgba(176, 39, 39, 0.95);
+  transform: scale(1.05) translateX(-2px); /* Slight move left on hover */
+}
+
+/* General Responsive Adjustments */
+@media (max-width: 767px) { /* Changed from 768px to 767px for more common breakpoint */
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .card-description {
+    font-size: 0.8rem;
+  }
+
+  .timeline {
+    margin-left: 0.5rem; /* Reduce left margin */
+    padding-left: 1.5rem; /* Reduce left padding */
+  }
+  
+  .timeline-item::before {
+    left: -1.9rem; /* Adjust dot position */
+  }
+  
+  .organizer-info {
+    flex-direction: column;
+  }
+  
+  /* Fixed buttons on mobile */
+  .fixed-buttons {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    transform: none;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0.5rem 0.5rem 0.75rem;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .fixed-button {
+    writing-mode: horizontal-tb;
+    border-radius: 6px;
+    min-height: auto;
+    padding: 0.6rem 0.5rem; /* Adjusted padding for mobile */
+    font-size: 0.9rem; /* Slightly smaller font for mobile */
+    flex: 1; /* Distribute space */
+    margin: 0 0.25rem; /* Small gap */
+  }
+  .fixed-button:hover {
+    transform: scale(1.03); /* Less aggressive scale on mobile */
+  }
+
+  /* Mobile navigation menu - Full screen */
+  .nav.active {
+    position: fixed; /* Take over screen */
+    top: 0;
+    left: 0;
+    width: 100vw;  /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto; /* Scroll if content exceeds height */
+    border-radius: 0; /* No rounded corners for full screen */
+    padding: 6rem 1.5rem 2rem 1.5rem; /* Top padding to avoid overlap with fixed X, L/R/B padding */
+    background-color: rgba(34, 34, 34, 0.85); /* MODIFIED: Semi-transparent dark background for mobile */
+    /* box-shadow: none; /* Typically, full-screen overlays don't need their own shadow */
+                      /* If the main .nav rule's shadow is desired, remove this line or adjust */
+                      /* For a clean full-screen overlay, often no shadow is preferred. */
+  }
+    
+  .nav.active ul {
+    align-items: center; /* Center links text in full screen menu if desired */
+    gap: 1rem;
+  }
+  .nav.active a {
+    font-size: 1.1rem; /* Slightly larger font for mobile menu */
+  }
+
+  /* Hamburger (X) position and color for active mobile menu */
+  .header .hamburger.active { /* Target hamburger within header when it's active */
+    position: fixed;   /* Position relative to viewport */
+    top: 1.25rem;      /* Adjust to position X appropriately */
+    right: 1.25rem;     /* Adjust to position X appropriately */
+    z-index: 1005;      /* Ensure it's on top of the full-screen menu */
+  }
+  .header .hamburger.active span {
+    background-color: #ffffff; /* Make X lines white */
+  }
+
+} /* End of @media (max-width: 767px) */
+  
+@media (min-width: 768px) {
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+  }
+}
+  
+@media (min-width: 1024px) {
+  .courses-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .hero-title {
+    font-size: 4rem;
+  }
+}
+
+/* Ensure that the nav is not displayed when not active, even with more specific selectors */
+/* Navigation Menu Panel */
+/* Navigation Menu Panel */
+.nav {
+  display: none; /* Hidden by default */
+  position: absolute; /* Drops down below the header */
+  top: 100%; /* Start below the header */
+  left: 0;
+  width: 100%; /* Full width of its container (.header-container) */
+  background-color: rgba(34, 34, 34, 0.85); /* MODIFIED: Semi-transparent dark background */
+  padding: 1.5rem 1.5rem; /* Padding inside the menu */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* MODIFIED: Re-added shadow for definition */
+  z-index: 1000; /* Below hamburger, above other header content if any */
+  border-radius: 0 0 6px 6px; /* Optional: if you want slight rounding at the bottom on desktop */
+}
+.nav.active {
+  display: block;
+}
