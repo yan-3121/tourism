@@ -594,6 +594,12 @@
     font-size: 0.8rem;
   }
 
+  .course-container {
+    max-width: 100%;
+    padding: 1rem 0.5rem;
+    margin: 2rem 0;
+  }
+
   .timeline {
     margin-left: 0.5rem; /* Reduce left margin */
     padding-left: 1.5rem; /* Reduce left padding */
