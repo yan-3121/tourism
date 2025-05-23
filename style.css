@@ -586,6 +586,10 @@
     font-size: 2rem;
   }
   
+  .hero-subtitle p {
+    font-size: 1.25rem;
+  }
+
   .card-description {
     font-size: 0.8rem;
   }
