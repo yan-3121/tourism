@@ -529,7 +529,7 @@
 }
 
 #inquiry-step {
-  scroll-margin-top: 100px; /* Adjust based on fixed header height, if any */
+  scroll-margin-top: 200px; /* Adjust based on fixed header height, if any */
 }
     
 /* Responsive flow chart items */
